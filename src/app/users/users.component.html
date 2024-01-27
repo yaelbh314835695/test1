@@ -1,0 +1,146 @@
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="searchUserForm1" (submit)="submit()">
+      <!-- Id Field -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> ID </mat-label>
+        <input matInput formControlName="id" />
+        <mat-error
+          *ngIf="
+            searchUserForm1.controls.id.touched &&
+            searchUserForm1.controls.id.invalid
+          "
+        >
+          <span *ngIf="searchUserForm1.controls.id.errors.pattern"
+            >This field is invalid.</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- First Name Field -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> First Name </mat-label>
+        <input matInput formControlName="firstName" />
+        <mat-error
+          *ngIf="
+            searchUserForm1.controls.firstName.touched &&
+            searchUserForm1.controls.firstName.invalid
+          "
+        >
+          <span *ngIf="searchUserForm1.controls.firstName.errors.pattern"
+            >This field is invalid.</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Last Name Field -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Last Name </mat-label>
+        <input matInput formControlName="lastName" />
+        <mat-error
+          *ngIf="
+            searchUserForm1.controls.lastName.touched &&
+            searchUserForm1.controls.lastName.invalid
+          "
+        >
+          <span *ngIf="searchUserForm1.controls.lastName.errors.pattern"
+            >This field is invalid.</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- E-mail Field -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> E-mail </mat-label>
+        <input matInput formControlName="email" />
+        <mat-error
+          *ngIf="
+            searchUserForm1.controls.email.touched &&
+            searchUserForm1.controls.email.invalid
+          "
+        >
+          <span *ngIf="searchUserForm1.controls.email.errors.pattern"
+            >This field is invalid.</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- AccountId Field -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> AccountId </mat-label>
+        <input matInput formControlName="accountId" />
+        <mat-error
+          *ngIf="
+            searchUserForm1.controls.accountId.touched &&
+            searchUserForm1.controls.accountId.invalid
+          "
+        >
+          <span *ngIf="searchUserForm1.controls.accountId.errors.pattern"
+            >This field is invalid. Enter 9 numbers like this: 99-9999999</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <!-- All Users Button -->
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="getAllUsers()"
+      >
+        All Users
+      </button>
+
+      <!-- Search Button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="searchDisabled()"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- First Name Column -->
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+  </ng-container>
+
+  <!-- Last Name Name Column -->
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+  </ng-container>
+
+  <!-- email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <!-- Account id Column -->
+  <ng-container matColumnDef="account_id">
+    <th mat-header-cell *matHeaderCellDef>Account Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.account_id }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+>
+</mat-paginator>

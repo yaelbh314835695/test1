@@ -1,0 +1,20 @@
+.filter {
+  margin: 5vh;
+}
+
+table {
+  width: 100%;
+}
+.example-container{
+  text-align: center
+}
+
+.form-container{
+  width: 40%; 
+  margin: 0 px auto; 
+  margin-top: 200 px
+}
+
+button{
+  margin: 10px;;
+}
